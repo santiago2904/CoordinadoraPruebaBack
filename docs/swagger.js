@@ -27,6 +27,91 @@ const swaggerDefinition = {
             }
         },
         schemas: {
+            getUserData: {
+                type: "object",
+                properties: {
+                    id: {
+                        type: "integer"
+                    },
+                    name: {
+                        type: "string"
+                    },
+                    identification: {
+                        type: "string"
+                    },
+                    birthdate: {
+                        type: "string"
+                    },
+                    email: {
+                        type: "string"
+                    },
+                    longitude: {
+                        type: "number"
+                    },
+                    latitude: {
+                        type: "number"
+                    },
+                    rol: {
+                        type: "string"
+                    }
+                },
+                example: {
+                    id: 1,
+                    name: "John Doe",
+                    identification: "123456789",
+                    birthdate: "1990-01-01",
+                    email: "john.doe@example.com",
+                    longitude: -74.005912,
+                    latitude: 40.712865,
+                    rol: "Admin"
+                }
+            },
+            createUserData: {
+                type: "object",
+                properties: {
+                    name: {
+                        type: "string"
+                    },
+                    identification: {
+                        type: "string"
+                    },
+                    birthdate: {
+                        type: "string",
+                        format: "date"
+                    },
+                    email: {
+                        type: "string"
+                    },
+                    password: {
+                        type: "string"
+                    },
+                    longitude: {
+                        type: "number",
+                    },
+                    latitude: {
+                        type: "number"
+                    },
+                    id_rol: {
+                        type: "integer"
+                    }
+                },
+                example: {
+                    name: "John Doe",
+                    identification: "123456789",
+                    birthdate: "1990-01-01",
+                    email: "john.doe@example.com",
+                    password: "password",
+                    longitude: -74.005912,
+                    latitude: 40.712865,
+                    id_rol: 1
+                }
+            },
+            getAllUserData: {
+                type: "array",
+                items: {
+                    $ref: "#/components/schemas/getUserData"
+                }
+            },
 
         },
     },
