@@ -45,11 +45,8 @@ const swaggerDefinition = {
                     email: {
                         type: "string"
                     },
-                    longitude: {
-                        type: "number"
-                    },
-                    latitude: {
-                        type: "number"
+                    location: {
+                        type: "string"
                     },
                     rol: {
                         type: "string"
@@ -61,8 +58,7 @@ const swaggerDefinition = {
                     identification: "123456789",
                     birthdate: "1990-01-01",
                     email: "john.doe@example.com",
-                    longitude: -74.005912,
-                    latitude: 40.712865,
+                    location: "cra 41#49-52, medellin, antioquia, colombia",
                     rol: "Admin"
                 }
             },
@@ -85,13 +81,10 @@ const swaggerDefinition = {
                     password: {
                         type: "string"
                     },
-                    longitude: {
-                        type: "number",
+                    location: {
+                        type: "string"
                     },
-                    latitude: {
-                        type: "number"
-                    },
-                    id_rol: {
+                    id_role: {
                         type: "integer"
                     }
                 },
@@ -101,9 +94,8 @@ const swaggerDefinition = {
                     birthdate: "1990-01-01",
                     email: "john.doe@example.com",
                     password: "password",
-                    longitude: -74.005912,
-                    latitude: 40.712865,
-                    id_rol: 1
+                    location: "cra 41#49-52, medellin, antioquia, colombia",
+                    id_role: 1
                 }
             },
             getAllUserData: {
@@ -112,8 +104,186 @@ const swaggerDefinition = {
                     $ref: "#/components/schemas/getUserData"
                 }
             },
+            getEventData: {
+                type: "object",
+                properties: {
+                    id: {
+                        type: "integer"
+                    },
+                    name: {
+                        type: "string"
+                    },
+                    description: {
+                        type: "string"
+                    },
+                    start_date: {
+                        type: "string",
+                        format: "date"
+                    },
+                    end_date: {
+                        type: "string",
+                        format: "date"
+                    },
+                    location: {
+                        type: "string"
+                    },
+                    max_attendees: {
+                        type: "integer"
+                    },
+                    created_by: {
+                        type: "integer"
+                    },
+                },
+                example: {
+                    id: 1,
+                    name: "Evento 1",
+                    description: "Evento de prueba",
+                    start_date: "2021-01-01",
+                    end_date: "2021-01-02",
+                    location: "cra 41#49-52, medellin, antioquia, colombia",
+                    max_attendees: 10,
+                    created_by: 1,
+                }
+            },
+            createEventData: {
+                type: "object",
+                properties: {
+                    name: {
+                        type: "string"
+                    },
+                    description: {
+                        type: "string"
+                    },
+                    start_date: {
+                        type: "string",
+                        format: "date"
+                    },
+                    end_date: {
+                        type: "string",
+                        format: "date"
+                    },
+                    location: {
+                        type: "string"
+                    },
+                    max_attendees: {
+                        type: "integer"
+                    },
+                    created_by: {
+                        type: "integer"
+                    },
+                },
+                example: {
+                    name: "Evento 1",
+                    description: "Evento de prueba",
+                    start_date: "2021-01-01",
+                    end_date: "2021-01-02",
+                    location: "cra 41#49-52, medellin, antioquia, colombia",
+                    max_attendees: 10,
+                    created_by: 1,
+                }
+            },
+            getAllEventsData: {
+                type: "array",
+                items: {
+                    $ref: "#/components/schemas/getEventData"
+                }
 
-        },
+            },
+            dataPlaces: {
+                type: "array",
+                items: {
+                    type: "object",
+                    properties: {
+                        name: {
+                            type: "string"
+                        },
+                        category: {
+                            type: "string"
+                        },
+                        address: {
+                            type: "string"
+                        }
+                    },
+                    example: {
+                        name: "Centro Formativo De Antioquia CEFA",
+                        category: "high school, highschool, secondary school, school",
+                        address: "cra 41#49-52, medellin, antioquia, colombia"
+                    }
+
+                }
+            },
+            createAttendeeData: {
+                type: "object",
+                properties: {
+                    user_id: {
+                        type: "integer"
+                    },
+                    event_id: {
+                        type: "integer"
+                    },
+                    attendance_date: {
+                        type: "string",
+                        format: "date"
+                    }
+                },
+                example: {
+                    user_id: 1,
+                    event_id: 1,
+                    attendance_date: "2021-01-01"
+                }
+            },
+            getCountAttendeesData: {
+                type: "object",
+                properties: {
+                    total: {
+                        type: "integer"
+                    },
+                    data: {
+                        type: "array",
+                        items: {
+                            type: "object",
+                            properties: {
+                                date: {
+                                    type: "string",
+                                    format: "date"
+                                },
+                                count: {
+                                    type: "integer"
+                                }
+                            }
+                        }
+                    }
+                },
+                example: {
+                    total: 10,
+                    data: [
+                        {
+                            date: "2024-03-23",
+                            count: 5
+                        },
+                        {
+                            date: "2024-03-22",
+                            count: 5
+                        }
+                    ]
+                }
+            },
+            responseMessage: {
+                type: "object",
+                properties: {
+                    status: {
+                        type: "string"
+                    },
+                    message: {
+                        type: "string"
+                    }
+                },
+                example: {
+                    status: "ok",
+                    message: "Data processed successfully."
+                }
+            }
+        }
     },
 };
 

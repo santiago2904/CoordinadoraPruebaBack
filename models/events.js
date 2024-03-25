@@ -1,4 +1,4 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes,Op } = require("sequelize");
 const { sequelize } = require("../config/mysql");
 const ModelUsers = require("./users");
 
@@ -26,12 +26,8 @@ const ModelEvents = sequelize.define(
             type: DataTypes.DATE,
             allowNull: false,
         },
-        latitude: {
-            type: DataTypes.DECIMAL(10, 6),
-            allowNull: false,
-        },
-        longitude: {
-            type: DataTypes.DECIMAL(10, 6),
+        location: {
+            type: DataTypes.STRING(100),
             allowNull: false,
         },
         max_attendees: {
@@ -41,7 +37,12 @@ const ModelEvents = sequelize.define(
         created_by: {
             type: DataTypes.INTEGER,
             allowNull: true,
-        }
+        },
+        state: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: true,
+        },
     },
     {
         timestamps: true,
@@ -53,5 +54,60 @@ ModelEvents.belongsTo(ModelUsers, {
     foreignKey: 'created_by',
     as: 'creator'
 });
+
+ModelEvents.findAllActive = async () => {
+    return await ModelEvents.findAll({
+        where: {
+            state: true,
+        },
+        include: [
+            {
+                model: ModelUsers,
+                as: 'creator',
+                attributes: ['id', 'name', 'email'],
+            },
+        ],
+    });
+};
+
+
+ModelEvents.findOneByPkActive = async (id) => {
+    return await ModelEvents.findOne({
+        where: {
+            id,
+            state: true,
+        },
+        include: [
+            {
+                model: ModelUsers,
+                as: 'creator',
+                attributes: ['id', 'name', 'email'],
+            },
+        ],
+    });
+};
+
+ModelEvents.findEventByNameAndDates = async (name, start_date, end_date) => {
+    return await ModelEvents.findOne({
+        where: {
+            name,
+            state: true,
+            [Op.or]: [
+                {
+                    start_date: {
+                        [Op.between]: [start_date, end_date],
+                    },
+                },
+                {
+                    end_date: {
+                        [Op.between]: [start_date, end_date],
+                    },
+                },
+            ],
+        },
+    });
+}
+
+
 
 module.exports = ModelEvents;

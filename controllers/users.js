@@ -20,7 +20,7 @@ const getUserById = async (req, res) => {
         const { id } = req.params;
         const user = await ModelUsers.findByPkActive(id);
         if (!user) {
-            handleHttpError(res, "Usuario no encontrado.", 404);
+            handleHttpError(res, "User not found.", 404);
             return;
         }
         res.status(200).send(formatUserData(user));
@@ -36,21 +36,17 @@ const createUser = async (req, res) => {
         data = matchedData(req);
         const findUser = await ModelUsers.findUserByEmailOrIdentification(data.email, data.identification);
         if (findUser) {
-            handleHttpError(res, "El usuario ya existe.", 409);
+            handleHttpError(res, "The user already exists.", 409);
             return;
         }
         const passwordHash = await encrypt(data.password)
         const body = { ...data, password: passwordHash }
         const dataUser = await ModelUsers.create(body)
         dataUser.set('password', undefined, { strict: false });
-        res.status(201).send(formatUserData(dataUser));
+        res.status(201).send((dataUser));
 
     } catch (e) {
-        if (e.name === 'SequelizeUniqueConstraintError') {
-            handleHttpError(res, "El usuario ya existe.", 409);
-        } else {
-            handleHttpError(res, "ERROR_EN_CREATE_ITEM : " + e, 500);
-        }
+        handleHttpError(res, "ERROR_EN_CREATE_ITEM : " + e, 500);
     }
 }
 
@@ -60,7 +56,7 @@ const updateUser = async (req, res) => {
         const data = matchedData(req);
         const user = await ModelUsers.findByPkActive(id);
         if (!user) {
-            handleHttpError(res, "Usuario no encontrado.", 404);
+            handleHttpError(res, "User not found.", 404);
             return;
         }
         const userUpdated = await user.update(data);
@@ -76,7 +72,7 @@ const deleteUser = async (req, res) => {
         const { id } = req.params;
         const user = await ModelUsers.findByPkActive(id);
         if (!user) {
-            handleHttpError(res, "Usuario no encontrado.", 404);
+            handleHttpError(res, "User not found.", 404);
             return;
         }
         const deleteUser = await user.update({ state: false });
@@ -93,8 +89,7 @@ const formatUserData = (user) => {
         identification: user.identification,
         birthdate: user.birthdate,
         email: user.email,
-        longitude: user.longitude,
-        latitude: user.latitude,
+        location: user.location,
         rol: user.rol.description
     }
 }

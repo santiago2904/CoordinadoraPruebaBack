@@ -30,15 +30,11 @@ const ModelUsers = sequelize.define(
             type: DataTypes.STRING(100),
             allowNull: false,
         },
-        longitude: {
-            type: DataTypes.DECIMAL(10, 6),
+        location: {
+            type: DataTypes.STRING(100),
             allowNull: false,
         },
-        latitude: {
-            type: DataTypes.DECIMAL(10, 6),
-            allowNull: false,
-        },
-        id_rol: {
+        id_role: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
@@ -56,7 +52,7 @@ const ModelUsers = sequelize.define(
 
 
 ModelUsers.belongsTo(ModelRoles, {
-    foreignKey: 'id_rol',
+    foreignKey: 'id_role',
     as: 'rol'
 });
 
