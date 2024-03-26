@@ -1,4 +1,4 @@
-
+version: '3.7'
 
 services:
   mysql:
@@ -16,13 +16,3 @@ services:
       - "1880:1880"
     depends_on:
       - mysql
-  api:
-    image: api-coordinadora
-    container_name: api-coordinadora
-    ports:
-      - "3001:3001"
-    deploy:
-      replicas: 5
-    depends_on:
-      - mysql
-      - nodered

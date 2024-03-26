@@ -4,6 +4,7 @@ const { tokenSign, verifyToken, tokenSignReset, verifyTokenReset } = require("..
 
 const ModelUsers = require('../models/users');
 const { handleHttpError } = require("../utils/handleError");
+const axios = require('axios');
 
 
 
@@ -48,7 +49,16 @@ const loginCtrl = async (req, res) => {
             
             }
         }
+        // Make POST request to localhost:1880
+        const response = await axios.post('http://localhost:1880/send-email', {
+            destinationEmail: user.email,
+            subjectEmail: "new login",
+            textEmail: "you have a login in this moment"
+        });
+        
 
+        // Handle the response
+        console.log(response.data);
         res.send({ data })
 
     } catch (e) {
