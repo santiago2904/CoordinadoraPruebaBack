@@ -1,0 +1,27 @@
+
+
+services:
+  mysql:
+    image: mysql
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: 'zarco'
+    ports:
+      - "3306:3306"
+  nodered:
+    image: nodered/node-red
+    container_name: nodered-container
+    ports:
+      - "1880:1880"
+    depends_on:
+      - mysql
+  api:
+    image: api-coordinadora
+    container_name: api-coordinadora
+    ports:
+      - "3001:3001"
+    deploy:
+      replicas: 5
+    depends_on:
+      - mysql
+      - nodered
