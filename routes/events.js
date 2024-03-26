@@ -113,8 +113,6 @@ router.get("/:id", authMiddleware, checkRol(["ADMIN"]), getEventById);
  */
 router.get("/poi/:id/:radius/:limit", authMiddleware, checkRol(["ADMIN"]), getCoordenadesByAdressLocation);
 
-
-
 /**
  * @swagger
  * /events/excel/{id}:
@@ -157,7 +155,6 @@ router.get("/poi/:id/:radius/:limit", authMiddleware, checkRol(["ADMIN"]), getCo
  *         description: Server error occurred while creating the attendees.
  */
 router.post("/excel/:id", authMiddleware, checkRol(["ADMIN"]), upload.single('file'), processUploadExcel);
-
 
 /**
  * @swagger
