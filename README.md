@@ -107,6 +107,9 @@ Además, debes configurar el nodo de correo electrónico (email) en Node-RED con
 
 Correo Electrónico: pruebacoordinadoramailer@gmail.com
 Contraseña: kovr wuyk fyij vulk
+
+este flujo es util para el envío de notificiones a los usuarios
+
 ## Con estos pasos, deberías poder configurar y ejecutar el proyecto 
 
     
