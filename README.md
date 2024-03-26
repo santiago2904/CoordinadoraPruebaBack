@@ -89,7 +89,7 @@ Este archivo define tres servicios: mysql, nodered y api. El servicio api tiene 
 En la raíz del proyecto se encuentra un archivo llamado `datos.txt`. Este archivo contiene los scripts SQL para crear las tablas necesarias de la base de datos y también cuenta con inserciones de datos para efectos de prueba.
 
 ## Plantilla de Excel
-La plantilla de Excel se encuentra en la raíz del proyecto con el nombre template-upload-xlsx. El endpoint para la carga de datos se puede encontrar en  ` localhost:3001/api/events/excel/id`.
+La plantilla de Excel se encuentra en la raíz del proyecto con el nombre `template-upload.xlsx`. El endpoint para la carga de datos se puede encontrar en  ` localhost:3001/api/events/excel/id`.
 
 ## Configuración de Node-RED
 Antes de importar el flujo `node-flow.json` en Node-RED, asegúrate de instalar el nodo `node-red-node-email`. Puedes hacerlo desde la interfaz de Node-RED en la pestaña "Manage palette".
