@@ -15,9 +15,9 @@ const axios = require('axios');
  */
 const loginCtrl = async (req, res) => {
     try {
-        
+
         req = matchedData(req);
-        
+
         const user = await ModelUsers.findForLoginDataByEmail(req.email);
 
         if (!user) {
@@ -46,16 +46,16 @@ const loginCtrl = async (req, res) => {
                 longitude: user.get("longitude"),
                 latitude: user.get("latitude"),
                 rol: user.rol.description
-            
+
             }
         }
         // Make POST request to localhost:1880
-        const response = await axios.post('http://localhost:1880/send-email', {
+        const response = await axios.post('http://host.docker.internal:1880/send-email', {
             destinationEmail: user.email,
             subjectEmail: "new login",
             textEmail: "you have a login in this moment"
         });
-        
+
 
         // Handle the response
         console.log(response.data);
