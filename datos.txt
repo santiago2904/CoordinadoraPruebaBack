@@ -1,0 +1,123 @@
+use coordinadora_prueba;
+
+create table roles
+(
+    id          int auto_increment
+        primary key,
+    description varchar(30) null,
+    createdAt   datetime    null,
+    updatedAt   datetime    null
+);
+
+INSERT INTO coordinadora_prueba.roles (id, description, createdAt, updatedAt) VALUES (1, 'ADMIN', '2024-03-23 11:45:19', '2024-03-23 11:45:20');
+INSERT INTO coordinadora_prueba.roles (id, description, createdAt, updatedAt) VALUES (2, 'ATTENDEE', '2024-03-23 11:45:23', '2024-03-23 11:45:23');
+
+create table users
+(
+    id             int auto_increment
+        primary key,
+    name           varchar(50)      not null,
+    identification varchar(50)      not null,
+    birthdate      date             not null,
+    email          varchar(100)     not null,
+    password       varchar(100)     not null,
+    location       varchar(100)     not null,
+    id_role        int              not null,
+    state          bit default b'1' not null,
+    createdAt      datetime         null,
+    updatedAt      datetime         null,
+    constraint users_roles_id_fk
+        foreign key (id_role) references roles (id)
+);
+
+INSERT INTO coordinadora_prueba.users (id, name, identification, birthdate, email, password, location, id_role, state, createdAt, updatedAt) VALUES (6, 'isabel palacio', '43812972', '1974-02-09', 'isabelpalacioa@gmail.com', '$2a$10$RaNcXtz7B62RFINg1rJwIOa5DIusOJTKQ4Ndxe54aVlB2PEDlqzwG', 'cra 41#49-52, medellin, antioquia, colombia', 1, true, '2024-03-24 16:54:40', '2024-03-24 16:54:40');
+INSERT INTO coordinadora_prueba.users (id, name, identification, birthdate, email, password, location, id_role, state, createdAt, updatedAt) VALUES (12, 'jhon doe ', '10910973', '2005-05-16', 'diana.mejiafr@amigo.edu.co', '$2a$10$kq.2NtVO1frE5gKIYdHESuHa/dRTo8nM.ev.7HygA6uBLaokSagfi', 'Cl. 50b #37-75, medellin', 2, true, '2024-03-24 23:47:52', '2024-03-24 23:47:52');
+INSERT INTO coordinadora_prueba.users (id, name, identification, birthdate, email, password, location, id_role, state, createdAt, updatedAt) VALUES (13, 'juan pepito', '5151516', '1989-06-15', 'sapalacioa@unal.edu.co', '$2a$10$0C0T6EX2Yn8LQIDhD1maI.UNB9/31IIamaE0kPUICGYiBvWpjNxBi', 'cra 73b#98-124, medellin', 2, true, '2024-03-24 23:47:52', '2024-03-24 23:47:52');
+INSERT INTO coordinadora_prueba.users (id, name, identification, birthdate, email, password, location, id_role, state, createdAt, updatedAt) VALUES (14, 'Maria García', '12345678', '1970-01-01', 'maria.garcia@example.com', '$2a$10$/OjtlRVdq3XNIdEq0ymUCeZqPScQlwluHs8y3R3EjRqB566GTX.cy', 'Av. Libertador, Caracas', 2, true, '2024-03-25 00:23:26', '2024-03-25 00:23:26');
+INSERT INTO coordinadora_prueba.users (id, name, identification, birthdate, email, password, location, id_role, state, createdAt, updatedAt) VALUES (15, 'Carlos Martínez', '98765432', '1970-01-01', 'carlos.martinez@example.com', '$2a$10$xLObwiR3O1k2J/po/skus.5JLlfi08FaWE/RJp3KxD.GiYodGrHeW', 'Av. Paulista, São Paulo', 2, true, '2024-03-25 00:23:26', '2024-03-25 00:23:26');
+INSERT INTO coordinadora_prueba.users (id, name, identification, birthdate, email, password, location, id_role, state, createdAt, updatedAt) VALUES (16, 'Ana López', '45678901', '1970-01-01', 'ana.lopez@example.com', '$2a$10$e2sqWau45SDwoLJERmdRJeU4p8ZeaCA3F5Ka9pgJi716TlPRToB/O', 'Calle Mayor, Madrid', 2, true, '2024-03-25 00:23:26', '2024-03-25 00:23:26');
+INSERT INTO coordinadora_prueba.users (id, name, identification, birthdate, email, password, location, id_role, state, createdAt, updatedAt) VALUES (17, 'Pedro Sánchez', '13579246', '1970-01-01', 'pedro.sanchez@example.com', '$2a$10$ZxZmqKITeLRTr1pBRAPyi.zS0mC4p42VJhfHlE/3rcGtYv.qh45uS', 'Calle 50, Buenos Aires', 2, true, '2024-03-25 00:23:26', '2024-03-25 00:23:26');
+INSERT INTO coordinadora_prueba.users (id, name, identification, birthdate, email, password, location, id_role, state, createdAt, updatedAt) VALUES (18, 'Luisa Fernanda', '24681357', '1970-01-01', 'luisa.fernanda@example.com', '$2a$10$lEpTsO7ZXKimBpSHvIp52ek/15fWN9ZKmyv7Pwl5NGjZ6c62W/52u', 'Av. 9 de Julio, Buenos Aires', 2, true, '2024-03-25 00:23:26', '2024-03-25 00:23:26');
+INSERT INTO coordinadora_prueba.users (id, name, identification, birthdate, email, password, location, id_role, state, createdAt, updatedAt) VALUES (19, 'Fernando Torres', '36925814', '1970-01-01', 'fernando.torres@example.com', '$2a$10$BMXZHRAunER4MH9b1VbYzeNuc4zPmXU41rb931t3Wi7fH7AredwF2', 'Rua Augusta, São Paulo', 2, true, '2024-03-25 00:23:26', '2024-03-25 00:23:26');
+INSERT INTO coordinadora_prueba.users (id, name, identification, birthdate, email, password, location, id_role, state, createdAt, updatedAt) VALUES (20, 'Roberto Gómez', '15975328', '1970-01-01', 'roberto.gomez@example.com', '$2a$10$A4TuDAKjYkDB2JkJqrFsP.aBCYPHE7E3RVDnkKDVKqTZdf7Gk.Rhy', 'Carrera 7, Bogotá', 2, true, '2024-03-25 00:23:26', '2024-03-25 00:23:26');
+INSERT INTO coordinadora_prueba.users (id, name, identification, birthdate, email, password, location, id_role, state, createdAt, updatedAt) VALUES (21, 'Laura García', '78521436', '1970-01-01', 'laura.garcia@example.com', '$2a$10$GT4t21D3ynVTxWCj/oE7ze39c0ZRTNR/VaV7gCjc4C2qMqXrU.f7y', 'Av. Reforma, Ciudad de México', 2, true, '2024-03-25 00:23:26', '2024-03-25 00:23:26');
+INSERT INTO coordinadora_prueba.users (id, name, identification, birthdate, email, password, location, id_role, state, createdAt, updatedAt) VALUES (22, 'Diego Pérez', '32145687', '1970-01-01', 'diego.perez@example.com', '$2a$10$LywccndwpCdt8J7Dvjrncu33gpNUp8ePsJmzsupa7ceU/pdYx/Pea', 'Cra 13, Bogotá', 2, true, '2024-03-25 00:23:26', '2024-03-25 00:23:26');
+INSERT INTO coordinadora_prueba.users (id, name, identification, birthdate, email, password, location, id_role, state, createdAt, updatedAt) VALUES (23, 'Natalia Ramírez', '65412387', '1970-01-01', 'natalia.ramirez@example.com', '$2a$10$pWsj3QEPMwEGQfDQCNkfRe/K6Jq9peV5oLMQPTdDTbaftpqRf6Y4S', 'Av. Paulista, São Paulo', 2, true, '2024-03-25 00:23:26', '2024-03-25 00:23:26');
+INSERT INTO coordinadora_prueba.users (id, name, identification, birthdate, email, password, location, id_role, state, createdAt, updatedAt) VALUES (24, 'Andrés Gómez', '14785236', '1970-01-01', 'andres.gomez@example.com', '$2a$10$8pn96i3hAhj18A.7yYvaj.eLRjGwCxrxEDlGJWip9A28i/45JeHem', 'Calle 45, Bogotá', 2, true, '2024-03-25 00:23:27', '2024-03-25 00:23:27');
+INSERT INTO coordinadora_prueba.users (id, name, identification, birthdate, email, password, location, id_role, state, createdAt, updatedAt) VALUES (25, 'Sara Rodríguez', '58246139', '1970-01-01', 'sara.rodriguez@example.com', '$2a$10$jXE7KwpTmXLPj9w/fUlMY.FxiDOvHyr05dhGPbB8Q1GgrOMq/i5e.', 'Av. Chapultepec, Ciudad de México', 2, true, '2024-03-25 00:23:27', '2024-03-25 00:23:27');
+INSERT INTO coordinadora_prueba.users (id, name, identification, birthdate, email, password, location, id_role, state, createdAt, updatedAt) VALUES (26, 'Gabriel Martínez', '23697458', '1970-01-01', 'gabriel.martinez@example.com', '$2a$10$eU010Z1w.sA2jup4N2rTaOrkkP/qB5kbjIWnKm7A0vcQXU/up14Wi', 'Av. Corrientes, Buenos Aires', 2, true, '2024-03-25 00:23:27', '2024-03-25 00:23:27');
+
+create table events
+(
+    id            int auto_increment
+        primary key,
+    name          varchar(100)     not null,
+    description   text             null,
+    start_date    date             not null,
+    end_date      date             not null,
+    location      varchar(100)     not null,
+    max_attendees int              null,
+    created_by    int              null,
+    state         bit default b'1' not null,
+    createdAt     datetime         null,
+    updatedAt     datetime         null,
+    constraint events_ibfk_1
+        foreign key (created_by) references users (id)
+);
+
+create index created_by on events (created_by);
+
+INSERT INTO coordinadora_prueba.events (id, name, description, start_date, end_date, location, max_attendees, created_by, state, createdAt, updatedAt) VALUES (1, 'estereo picnic', 'festival musica urbana en bogotá', '2024-03-21', '2024-03-24', 'Club Briceño 18 en Sopó, Cundinamarca', 10000, 6, true, '2024-03-24 12:01:51', '2024-03-24 12:01:52');
+INSERT INTO coordinadora_prueba.events (id, name, description, start_date, end_date, location, max_attendees, created_by, state, createdAt, updatedAt) VALUES (2, 'Evento 1', 'Evento de prueba', '2024-03-01', '2024-03-04', 'cra 41#49-52  ,medellin', 10, 6, true, '2024-03-24 19:19:55', '2024-03-24 19:19:55');
+
+create table event_attendees
+(
+    id              int auto_increment
+        primary key,
+    event_id        int      null,
+    user_id         int      null,
+    attendance_date date     null,
+    createdAt       datetime null,
+    updatedAt       datetime null,
+    constraint unique_attendance
+        unique (event_id, user_id, attendance_date),
+    constraint event_attendees_ibfk_1
+        foreign key (event_id) references events (id),
+    constraint event_attendees_ibfk_2
+        foreign key (user_id) references users (id)
+);
+
+create index user_id on event_attendees (user_id);
+
+
+INSERT INTO coordinadora_prueba.event_attendees (id, event_id, user_id, attendance_date, createdAt, updatedAt) VALUES (12, 2, 12, '2024-03-03', '2024-03-24 23:47:52', '2024-03-24 23:47:52');
+INSERT INTO coordinadora_prueba.event_attendees (id, event_id, user_id, attendance_date, createdAt, updatedAt) VALUES (13, 2, 13, '2024-03-02', '2024-03-24 23:47:52', '2024-03-24 23:47:52');
+INSERT INTO coordinadora_prueba.event_attendees (id, event_id, user_id, attendance_date, createdAt, updatedAt) VALUES (44, 2, 14, '2024-03-01', '2024-03-25 00:23:26', '2024-03-25 00:23:26');
+INSERT INTO coordinadora_prueba.event_attendees (id, event_id, user_id, attendance_date, createdAt, updatedAt) VALUES (45, 2, 15, '2024-03-03', '2024-03-25 00:23:26', '2024-03-25 00:23:26');
+INSERT INTO coordinadora_prueba.event_attendees (id, event_id, user_id, attendance_date, createdAt, updatedAt) VALUES (46, 2, 16, '2024-03-02', '2024-03-25 00:23:27', '2024-03-25 00:23:27');
+INSERT INTO coordinadora_prueba.event_attendees (id, event_id, user_id, attendance_date, createdAt, updatedAt) VALUES (47, 2, 17, '2024-03-03', '2024-03-25 00:23:27', '2024-03-25 00:23:27');
+INSERT INTO coordinadora_prueba.event_attendees (id, event_id, user_id, attendance_date, createdAt, updatedAt) VALUES (48, 2, 18, '2024-03-02', '2024-03-25 00:23:27', '2024-03-25 00:23:27');
+INSERT INTO coordinadora_prueba.event_attendees (id, event_id, user_id, attendance_date, createdAt, updatedAt) VALUES (49, 2, 19, '2024-03-01', '2024-03-25 00:23:27', '2024-03-25 00:23:27');
+INSERT INTO coordinadora_prueba.event_attendees (id, event_id, user_id, attendance_date, createdAt, updatedAt) VALUES (50, 2, 20, '2024-03-04', '2024-03-25 00:23:27', '2024-03-25 00:23:27');
+INSERT INTO coordinadora_prueba.event_attendees (id, event_id, user_id, attendance_date, createdAt, updatedAt) VALUES (51, 2, 21, '2024-03-03', '2024-03-25 00:23:27', '2024-03-25 00:23:27');
+INSERT INTO coordinadora_prueba.event_attendees (id, event_id, user_id, attendance_date, createdAt, updatedAt) VALUES (52, 2, 22, '2024-03-02', '2024-03-25 00:23:27', '2024-03-25 00:23:27');
+INSERT INTO coordinadora_prueba.event_attendees (id, event_id, user_id, attendance_date, createdAt, updatedAt) VALUES (53, 2, 23, '2024-03-01', '2024-03-25 00:23:27', '2024-03-25 00:23:27');
+INSERT INTO coordinadora_prueba.event_attendees (id, event_id, user_id, attendance_date, createdAt, updatedAt) VALUES (54, 2, 24, '2024-03-02', '2024-03-25 00:23:27', '2024-03-25 00:23:27');
+INSERT INTO coordinadora_prueba.event_attendees (id, event_id, user_id, attendance_date, createdAt, updatedAt) VALUES (55, 2, 25, '2024-03-04', '2024-03-25 00:23:27', '2024-03-25 00:23:27');
+INSERT INTO coordinadora_prueba.event_attendees (id, event_id, user_id, attendance_date, createdAt, updatedAt) VALUES (56, 2, 26, '2024-03-03', '2024-03-25 00:23:27', '2024-03-25 00:23:27');
+INSERT INTO coordinadora_prueba.event_attendees (id, event_id, user_id, attendance_date, createdAt, updatedAt) VALUES (57, 1, 12, '2024-03-23', '2024-03-25 20:58:11', '2024-03-25 20:58:11');
+INSERT INTO coordinadora_prueba.event_attendees (id, event_id, user_id, attendance_date, createdAt, updatedAt) VALUES (58, 1, 13, '2024-03-22', '2024-03-25 20:58:11', '2024-03-25 20:58:11');
+INSERT INTO coordinadora_prueba.event_attendees (id, event_id, user_id, attendance_date, createdAt, updatedAt) VALUES (59, 1, 14, '2024-03-22', '2024-03-25 20:58:11', '2024-03-25 20:58:11');
+INSERT INTO coordinadora_prueba.event_attendees (id, event_id, user_id, attendance_date, createdAt, updatedAt) VALUES (60, 1, 15, '2024-03-22', '2024-03-25 20:58:11', '2024-03-25 20:58:11');
+INSERT INTO coordinadora_prueba.event_attendees (id, event_id, user_id, attendance_date, createdAt, updatedAt) VALUES (61, 1, 16, '2024-03-21', '2024-03-25 20:58:11', '2024-03-25 20:58:11');
+INSERT INTO coordinadora_prueba.event_attendees (id, event_id, user_id, attendance_date, createdAt, updatedAt) VALUES (62, 1, 17, '2024-03-21', '2024-03-25 20:58:11', '2024-03-25 20:58:11');
+INSERT INTO coordinadora_prueba.event_attendees (id, event_id, user_id, attendance_date, createdAt, updatedAt) VALUES (63, 1, 18, '2024-03-21', '2024-03-25 20:58:11', '2024-03-25 20:58:11');
+INSERT INTO coordinadora_prueba.event_attendees (id, event_id, user_id, attendance_date, createdAt, updatedAt) VALUES (64, 1, 19, '2024-03-21', '2024-03-25 20:58:11', '2024-03-25 20:58:11');
+INSERT INTO coordinadora_prueba.event_attendees (id, event_id, user_id, attendance_date, createdAt, updatedAt) VALUES (65, 1, 20, '2024-03-22', '2024-03-25 20:58:11', '2024-03-25 20:58:11');
+INSERT INTO coordinadora_prueba.event_attendees (id, event_id, user_id, attendance_date, createdAt, updatedAt) VALUES (66, 1, 21, '2024-03-23', '2024-03-25 20:58:11', '2024-03-25 20:58:11');
+INSERT INTO coordinadora_prueba.event_attendees (id, event_id, user_id, attendance_date, createdAt, updatedAt) VALUES (67, 1, 22, '2024-03-22', '2024-03-25 20:58:11', '2024-03-25 20:58:11');
+INSERT INTO coordinadora_prueba.event_attendees (id, event_id, user_id, attendance_date, createdAt, updatedAt) VALUES (68, 1, 23, '2024-03-23', '2024-03-25 20:58:11', '2024-03-25 20:58:11');
+INSERT INTO coordinadora_prueba.event_attendees (id, event_id, user_id, attendance_date, createdAt, updatedAt) VALUES (69, 1, 24, '2024-03-22', '2024-03-25 20:58:11', '2024-03-25 20:58:11');
+INSERT INTO coordinadora_prueba.event_attendees (id, event_id, user_id, attendance_date, createdAt, updatedAt) VALUES (70, 1, 26, '2024-03-23', '2024-03-25 20:58:11', '2024-03-25 20:58:11');
+INSERT INTO coordinadora_prueba.event_attendees (id, event_id, user_id, attendance_date, createdAt, updatedAt) VALUES (71, 1, 25, '2024-03-23', '2024-03-25 20:58:11', '2024-03-25 20:58:11');
+INSERT INTO coordinadora_prueba.event_attendees (id, event_id, user_id, attendance_date, createdAt, updatedAt) VALUES (72, 1, 6, '2024-03-23', '2024-03-25 21:13:48', '2024-03-25 21:13:48');

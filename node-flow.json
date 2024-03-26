@@ -1,0 +1,78 @@
+[
+    {
+        "id": "dce0945eb1267837",
+        "type": "tab",
+        "label": "Flujo 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "5019caf59f134c7a",
+        "type": "http in",
+        "z": "dce0945eb1267837",
+        "name": "endpoint send gmail",
+        "url": "/send-email",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 170,
+        "y": 360,
+        "wires": [
+            [
+                "7f42f7dbd56117d9"
+            ]
+        ]
+    },
+    {
+        "id": "7f42f7dbd56117d9",
+        "type": "function",
+        "z": "dce0945eb1267837",
+        "name": "send email function",
+        "func": "\n// Inyectar datos en el nodo email\nmsg.to = msg.payload.destinationEmail;\nmsg.topic = msg.payload.subjectEmail; \nmsg.payload = msg.payload.textEmail;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 360,
+        "wires": [
+            [
+                "72b1161f2e57f6e1",
+                "6c2a103cfdad5000"
+            ]
+        ]
+    },
+    {
+        "id": "72b1161f2e57f6e1",
+        "type": "e-mail",
+        "z": "dce0945eb1267837",
+        "server": "smtp.gmail.com",
+        "port": "465",
+        "authtype": "BASIC",
+        "saslformat": true,
+        "token": "oauth2Response.access_token",
+        "secure": true,
+        "tls": true,
+        "name": "",
+        "dname": "send email",
+        "x": 910,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "6c2a103cfdad5000",
+        "type": "http response",
+        "z": "dce0945eb1267837",
+        "name": "response",
+        "statusCode": "200",
+        "headers": {
+            "content-type": "text/plain"
+        },
+        "x": 920,
+        "y": 440,
+        "wires": []
+    }
+]
